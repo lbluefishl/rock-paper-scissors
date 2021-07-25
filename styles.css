@@ -1,0 +1,69 @@
+html {
+
+font-size: 30px;    
+
+}
+
+h1 {
+ 
+    margin-bottom: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#icons-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+#score-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.icon-container {
+    transition-duration: 1.0s;
+    border: solid black;
+    border-radius: 10px;
+    margin: 15px;
+
+}
+
+.active:hover {
+    border-radius: 25px;
+    border: solid orange;
+    background-color: coral;
+}
+
+img {
+    width: 100px;
+    margin: 30px;
+}
+
+div#score-bar > div {
+    margin: 50px;
+}
+div#score-result {
+    margin: 20px;
+}
+div#round-number {
+    margin-top: 100px;
+}
+
+button {
+    background-color: coral;
+    width: 200px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <title>Rock-paper-scissors</title>
         <script src="scripts.js" defer></script> 
         <link rel="shortcut icon" href="#">
-    </head>
-    <body>
-    </body>
+        <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <h1>Rock, Paper, Scissors?</h1>
+        <div id='icons-bar'>
+            <div class='icon-container active' id='rock'><img src="https://image.flaticon.com/icons/png/512/4405/4405457.png" alt='rock'></div>
+            <div class='icon-container active' id='paper'><img src="https://image.flaticon.com/icons/png/512/4334/4334404.png" alt='paper'></div>
+            <div class='icon-container active' id='scissors'><img src="https://image.flaticon.com/icons/png/512/760/760911.png" alt='scissors'></div>
+        </div>
+        <div id='score-result'>Pick your poison. </div>
+
+        <div id='round-number'>
+            Round 1
+        </div>
+        <div id='score-bar'>
+            <div id='player-score'>Your Score: 0 </div>
+            <div id='computer-score'>Computer Score: 0 </div>
+        </div>
+        <div id='final-score'></div>
+    
+    </main>
+</body>
 </html>

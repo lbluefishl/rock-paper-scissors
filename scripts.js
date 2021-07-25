@@ -1,84 +1,98 @@
-
-
-let playerSelection;
 let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let totalRounds = 1;
 
 
-function askPlayer() {
-    playerSelection = prompt("Rock, paper, or scissors?", "").toLowerCase().trim();
+const button = document.createElement('button')
+button.textContent = 'Reset';
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const scoreResult = document.querySelector('#score-result');
+const finalScore = document.querySelector('#final-score');
+const playerFinalScore = document.querySelector('#player-score');
+const computerFinalScore = document.querySelector('#computer-score');
+const roundNumber = document.querySelector('#round-number');
+const body = document.querySelector('main');
 
-    if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
-        alert("check your spelling");
-        askPlayer();
-    } else {
-        console.log(`You chose ${playerSelection}!`);
-    }
-}
+var selections = document.querySelectorAll('.active');
+selections.forEach(selection => selection.addEventListener('click', playRound));
+button.addEventListener('click',reset);
 
-function askComputer() {
-    computerSelection = ['rock', 'paper', 'scissors']
-    computerSelection = computerSelection[Math.floor(Math.random() * 3)];
-    console.log(`Computer chose ${computerSelection}!`);
-}
 
-function gameRound() {
-
+function playRound() {
+    if (totalRounds<6) {
+    askComputer();
+    playerSelection = this.id;
     if (playerSelection === computerSelection) {
-        console.log(`Tie!`);
+        scoreResult.textContent=`Computer picked the same thing! Tie!`;
     }
     else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        console.log(`You win!`);
+        scoreResult.textContent=`Computer chose scissors. You win this round!`;
         playerScore++;
     }
     else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        console.log('You lose.');
+        scoreResult.textContent=`Computer chose paper. You lose this round.`;
         computerScore++;
 
     }
     else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        console.log(`You win!`);
+        scoreResult.textContent=`Computer chose rock. You win this round!`;
         playerScore++;
 
     }
     else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        console.log('You lose.');
+        scoreResult.textContent=`Computer chose scissors. You lose this round.`;
         computerScore++;
-
-
     }
     else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        console.log(`You win!`);
+        scoreResult.textContent=`Computer chose paper. You win this round!`;
         playerScore++;
-
     }
     else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        console.log('You lose.');
+        scoreResult.textContent=`Computer chose rock. You lose this round.`;
         computerScore++;
+    }
+    ++totalRounds;
+    playerFinalScore.textContent = `Player Score: ${playerScore}`;
+    computerFinalScore.textContent = `Computer Score: ${computerScore}`;
+    roundNumber.textContent = `Round ${totalRounds}`;
+    check();
+}
+};
 
+function askComputer() {
+    computerSelection = ['rock', 'paper', 'scissors']
+    computerSelection = computerSelection[Math.floor(Math.random() * 3)];
+} 
+function check() {
+    if (totalRounds === 6) {
+        if (playerScore === computerScore) {
+            finalScore.textContent = `This game ended in a tie!`;
+        }
+        else if (playerScore > computerScore) {
+            finalScore.textContent = `You won the game!`;
+        } else {
+            finalScore.textContent = `You lost the game.`;
+        }
+
+        roundNumber.textContent='';
+        body.appendChild(button);
+        selections.forEach(selection => selection.classList.remove('active'));
     }
 }
 
-function game() {
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+    totalRounds = 1;
+    playerFinalScore.textContent = `Player Score: ${playerScore}`;
+    computerFinalScore.textContent = `Computer Score: ${computerScore}`;
+    roundNumber.textContent = `Round ${totalRounds}`;
+    scoreResult.textContent='';
+    finalScore.textContent = '';
+    button.remove();
+    selections.forEach(selection => selection.classList.add('active'));
 
-    for (i=1; i< 6; i++) {
-        console.log(`Round ${i}`);
-        askPlayer();
-        askComputer();
-        gameRound();
-        console.log(`The current score is You: ${playerScore} to Computer: ${computerScore}`);
-    }
-    if (playerScore === computerScore) {
-        console.log(`Final score: Tie!`)
-    }
-    else if (playerScore > computerScore) {
-        console.log(`Final Result: You Win!`);
-    }
-    else if (playerScore < computerScore) {
-        console.log(`Final Result: You Lose!`);
-    }
 }
-
-
-game();
